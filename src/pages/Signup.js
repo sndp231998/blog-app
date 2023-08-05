@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import { useState } from "react";
 import { signUp } from "../services/user-service";
 import { toast } from "react-toastify";
@@ -25,6 +25,8 @@ const Signup = () => {
     about: "",
   });
 
+  const [passwordColor, setPasswordColor] = useState("");
+
   const [error, setError] = useState({
     errors: {},
     isError: false,
@@ -34,6 +36,13 @@ const Signup = () => {
   const handleChange = (event, property) => {
     //dynamic setting the values
     setData({ ...data, [property]: event.target.value });
+    if (property === "password") {
+      if(data.password.length < 6) {
+      setPasswordColor("red")
+      } else {
+        setPasswordColor("green")
+      }
+    }
   };
 
   //reseting the form
@@ -75,11 +84,22 @@ const Signup = () => {
       .catch((error) => {
         console.log(error);
         console.log("Error log");
+
+//modify 2023-3-8-600pm
+if (error?.response?.data?.message) {
+  // If the error message is present, it means it's a duplicate entry error
+  setError({
+    errors: { response: { data: { email: error.response.data.message } } },
+    isError: true,
+  });
+}else{
         //handle errors in proper way
         setError({
           errors: error,
           isError: true,
         });
+
+      }
       });
   };
 
@@ -137,8 +157,8 @@ const Signup = () => {
                     </FormFeedback>
                   </FormGroup>
 
-                  {/* password field */}
-                  <FormGroup>
+                {/* password field */}
+                <FormGroup>
                     <Label for="password">Enter password</Label>
                     <Input
                       type="password"
@@ -149,6 +169,12 @@ const Signup = () => {
                       invalid={
                         error.errors?.response?.data?.password ? true : false
                       }
+
+                      style={{
+                        borderColor: passwordColor,
+                          borderWidth: "3px",
+                          borderStyle: "solid",
+                        }}
                     />
 
                     <FormFeedback>

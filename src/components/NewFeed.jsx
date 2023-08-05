@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { loadAllPosts } from '../services/post-service'
-import { Row, Col, Pagination, PaginationItem, PaginationLink, Container } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import Post from './Post'
 import { toast } from 'react-toastify'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -34,7 +34,7 @@ function NewFeed() {
         if (pageNumber > postContent.pageNumber && postContent.lastPage) {
             return
         }
-        if (pageNumber < postContent.pageNumber && postContent.pageNumber == 0) {
+        if (pageNumber < postContent.pageNumber && postContent.pageNumber === 0) {
             return
         }
         loadAllPosts(pageNumber, pageSize).then(data => {
@@ -65,7 +65,7 @@ function NewFeed() {
             console.log(res)
             toast.success("post is deleled..")
 
-            let newPostContents = postContent.content.filter(p => p.postId != post.postId)
+            let newPostContents = postContent.content.filter(p => p.postId !== post.postId)
             setPostContent({ ...postContent, content: newPostContents })
 
         })

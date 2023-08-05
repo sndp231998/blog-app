@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+//import React, { useContext } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button, Card, CardBody, CardFooter, Col, Container, Input, Row, Table } from 'reactstrap'
 import Base from '../../components/Base'
 import ViewUserProfile from '../../components/ViewUserProfile'
-import userContext from '../../context/userContext'
+//import userContext from '../../context/userContext'
 import { getUser } from '../../services/user-service'
 function ProfileInfo() {
-  const object = useContext(userContext)
+ // const object = useContext(userContext)
 
   const [user, setUser] = useState(null)
   const [updateFlag, setUpdateFlag] = useState(false)
@@ -21,7 +21,8 @@ function ProfileInfo() {
       console.log(data);
       setUser({ ...data })
     })
-  }, [])
+    //yah pn change myself
+  }, [userId])
 
   const toggleUpdateFlag = (value) => {
     setUpdateFlag(value)
@@ -31,11 +32,11 @@ function ProfileInfo() {
   const showUpdateProfile = () => {
     toggleUpdateFlag(true)
   }
-
+//change myself
   //show view profile
-  const viewUpdateProflie = () => {
-    toggleUpdateFlag(false)
-  }
+  // const viewUpdateProflie = () => {
+  //   toggleUpdateFlag(false)
+  // }
 
 
   /*  view user profile */
@@ -68,7 +69,15 @@ function ProfileInfo() {
             <h3 className='text-uppercase'>user Information</h3>
 
             <Container className='text-center'>
-              <img style={{ maxWidth: '200px', maxHeight: '200px' }} src={user.image ? user.image : 'https://cdn.dribbble.com/users/6142/screenshots/5679189/media/1b96ad1f07feee81fa83c877a1e350ce.png?compress=1&resize=400x300&vertical=top'} alt="user profile picture" className='img-fluid  rounded-circle' />
+           {/* change myself */}
+           <img
+  style={{ maxWidth: '200px', maxHeight: '200px' }}
+  src={user.image ? user.image : 'https://cdn.dribbble.com/users/6142/screenshots/5679189/media/1b96ad1f07feee81fa83c877a1e350ce.png?compress=1&resize=400x300&vertical=top'}
+  alt="User profile picture"
+  className='img-fluid rounded-circle'
+/>
+
+
             </Container>
             <Table responsive striped hover bordered={true} className='text-center mt-5'>
               <tbody>

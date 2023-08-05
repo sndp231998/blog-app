@@ -11,6 +11,12 @@ export const createPost = (postData) => {
     .then((response) => response.data);
 };
 
+// search post
+
+export const searchPost = (keyword) => {
+  return myAxios.get(`/posts/search/${keyword}`).then(response => response.data)
+}
+
 //get all posts
 
 export const loadAllPosts = (pageNumber, pageSize) => {

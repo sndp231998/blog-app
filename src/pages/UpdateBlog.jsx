@@ -41,19 +41,20 @@ function UpdateBlog() {
                 console.log(error);
                 toast.error("error in loading the blog")
             })
-    }, [])
+    //yah pani afai change myself
+    }, [blogId])
 
     useEffect(() => {
         console.log("first")
         if (post) {
-            if (post.user.id != object.user.data.id) {
+            if (post.user.id !== object.user.data.id) {
                 toast.error("This is not your post !!")
                 navigate("/")
             }
 
         }
-
-    }, [post])
+//change myself (navigate,obj.user.data.id)
+    }, [post,navigate,object.user.data.id])
 
     const handleChange = (event, fieldName) => {
 

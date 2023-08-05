@@ -1,12 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Button, Card, CardBody, CardFooter, Col, Container, Row, Table } from 'reactstrap'
+import { Button, Card, CardBody, CardFooter, Container, Table } from 'reactstrap'
 import { getCurrentUserDetail, isLoggedIn } from '../auth'
 const ViewUserProfile = ({ user, updateProfileClick }) => {
 
 
     const [currentUser, setCurrentUser] = useState(null)
+    //change myself
     const [login, setLogin] = useState(false)
     useEffect(() => {
         setCurrentUser(getCurrentUserDetail())
@@ -70,7 +71,7 @@ const ViewUserProfile = ({ user, updateProfileClick }) => {
                     </tbody>
                 </Table>
 
-                {currentUser ? (currentUser.id == user.id) ? (
+                {currentUser ? (currentUser.id === user.id) ? (
                     <CardFooter className='text-center'>
                         <Button onClick={updateProfileClick} color='warning' >Update Profile</Button>
                     </CardFooter>

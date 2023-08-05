@@ -7,6 +7,9 @@ import { createComment, loadPost } from "../services/post-service"
 import { toast } from 'react-toastify'
 import { BASE_URL } from "../services/helper"
 import { isLoggedIn } from "../auth"
+
+//import TranslateComponent from "../components/TranslateComponent"
+
 const PostPage = () => {
 
     const { postId } = useParams()
@@ -25,8 +28,8 @@ const PostPage = () => {
             console.log(error)
             toast.error("Error in loading post")
         })
-
-    }, [])
+//yo change myself
+    }, [postId])
 
     const printDate = (numbers) => {
 
@@ -74,6 +77,10 @@ const PostPage = () => {
                         size: 12
                     }}>
 
+                        {/* Translate garako */}
+                          
+                        <div id='google_translate_element'></div>
+
                         <Card className="mt-3 ps-2 border-0 shadow-sm" >
 
 
@@ -102,7 +109,7 @@ const PostPage = () => {
                                         <CardText className="mt-5" dangerouslySetInnerHTML={{ __html: post.content }}>
 
                                         </CardText>
-
+                                        <div id='google_translate_element'></div>
                                     </CardBody>
                                 )
                             }

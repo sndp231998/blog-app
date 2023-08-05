@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink as ReactLink, useNavigate } from "react-router-dom";
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText } from "reactstrap";
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { doLogout, getCurrentUserDetail, isLoggedIn } from "../auth";
 import userContext from "../context/userContext";
+import { searchPost } from "../services/post-service";
+
+import "./navbar.css";
 
 const CustomNavbar = () => {
     const userContextData = useContext(userContext)
@@ -12,6 +15,8 @@ const CustomNavbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [login, setLogin] = useState(false)
     const [user, setUser] = useState(undefined)
+    const [keyword, setKeyword] = useState('')
+    const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
 
@@ -20,6 +25,21 @@ const CustomNavbar = () => {
 
     }, [login])
 
+
+
+    const handleChange = async (e) => {
+        // setting the keyword
+        setKeyword(e.target.value);
+
+        // fetch the blogs as per the keyword
+        if (keyword) {
+
+            let result = await searchPost(keyword);
+            if(Array.isArray(result) && result.length > 0) {
+                setSearchResult([...result])
+            }
+        }
+    }
 
     const logout = () => {
         doLogout(() => {
@@ -34,9 +54,8 @@ const CustomNavbar = () => {
         })
     }
 
-
     return (
-        <div >
+        <div>
             <Navbar
                 color="dark"
                 dark
@@ -103,7 +122,15 @@ const CustomNavbar = () => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
-
+                    {/* Search */}
+                    <Nav className="navbar-parent">
+                        <input type="text" value={keyword} onChange={handleChange} placeholder="Search" />
+                        <div className="search-modal">
+                {searchResult.length > 0 && searchResult.map((item,id) => {
+                            return <NavLink href={'/posts/'+item.postId} dangerouslySetInnerHTML={{ __html: item.title }} key={item.postId}></NavLink>
+                        })}
+                </div>
+                    </Nav>
 
                     <Nav navbar>
 
@@ -117,9 +144,10 @@ const CustomNavbar = () => {
                                         <NavLink tag={ReactLink} to={`/user/profile-info/${user.id}`} >
                                             Profile Info
                                         </NavLink>
+                                        
                                     </NavItem>
 
-
+                                
 
                                     <NavItem>
                                         <NavLink tag={ReactLink} to="/user/dashboard" >
@@ -166,6 +194,7 @@ const CustomNavbar = () => {
 
                 </Collapse>
             </Navbar>
+                
         </div>
 
     )

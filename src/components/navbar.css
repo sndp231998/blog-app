@@ -1,0 +1,15 @@
+.navbar-parent {
+    position: relative;
+}
+
+.search-modal {
+    position: absolute;
+    width: 100%;
+    padding: 20px;
+    height: auto;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* AIzaSyDa7wea457qbkjoLZXXcZA2GgaiRfZf7Nc */

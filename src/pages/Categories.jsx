@@ -32,7 +32,7 @@ function Categories() {
         deletePostService(post.postId).then(res => {
             console.log(res)
             toast.success("post is deleled..")
-            let newPosts = posts.filter(p => p.postId != post.postId)
+            let newPosts = posts.filter(p => p.postId !== post.postId)
             setPosts([...newPosts])
 
         })

@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "reactstrap";
-import Base from "./components/Base";
+// import { Button } from "reactstrap";
+// import Base from "./components/Base";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
