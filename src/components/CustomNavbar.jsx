@@ -6,7 +6,6 @@ import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink, Un
 import { doLogout, getCurrentUserDetail, isLoggedIn } from "../auth";
 import userContext from "../context/userContext";
 import { searchPost } from "../services/post-service";
-
 import "./navbar.css";
 
 const CustomNavbar = () => {
@@ -146,6 +145,14 @@ const CustomNavbar = () => {
                                         </NavLink>
                                         
                                     </NavItem>
+
+                                    
+                                    {/* <NavItem>
+                                        <NavLink tag={ReactLink} to={`/user/profile-info/${user.id}`} >
+                                            Profile Info
+                                        </NavLink>
+                                        
+                                    </NavItem> */}
 
                                 
 
