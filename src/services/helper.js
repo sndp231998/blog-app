@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "../auth";
 
 
-export const BASE_URL= "https://blog-app-apis-masterr-production.up.railway.app/api/v1";
+export const BASE_URL= "https://backend-blogging-application-production-6249.up.railway.app/api/v1";
 //export const BASE_URL = "http://localhost:9090/api/v1";
 
 

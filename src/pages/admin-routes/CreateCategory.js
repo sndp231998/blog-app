@@ -14,9 +14,9 @@ import {
   Label,
   Row,
 } from "reactstrap";
-import Base from "../components/Base";
-
-const BASE_URL = "http://localhost:9090/api/v1";
+import Base from "../../components/Base";
+const BASE_URL= "https://backend-blogging-application-production-6249.up.railway.app/api/v1";
+//const BASE_URL = "http://localhost:9090/api/v1";
 
 const CreateCategory = () => {
   const [data, setData] = useState({
@@ -36,7 +36,7 @@ const CreateCategory = () => {
     e.preventDefault();
 
     // Retrieve the user token from local storage
-    const userToken = localStorage.getItem("token");
+    const userToken = JSON.parse(localStorage.getItem("data")).token;
 
     if (!userToken) {
       toast.error("User token not found. Please log in.");

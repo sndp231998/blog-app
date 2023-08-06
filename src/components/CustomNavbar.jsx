@@ -16,6 +16,7 @@ const CustomNavbar = () => {
     const [user, setUser] = useState(undefined)
     const [keyword, setKeyword] = useState('')
     const [searchResult, setSearchResult] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
 
@@ -53,6 +54,21 @@ const CustomNavbar = () => {
         })
     }
 
+    useEffect(() => {
+    
+    let lskdata = JSON.parse(localStorage.getItem("data"))
+
+    if (lskdata) {
+        if(lskdata.user.roles.length > 0) {
+
+            setIsAdmin(lskdata.user.roles[0].id == 501 ? true : false)
+
+        }
+        // if(lskdata.user.roles[0] === 501) isAdmin = true;
+
+    }
+    }, [])
+    
     return (
         <div>
             <Navbar
@@ -88,6 +104,12 @@ const CustomNavbar = () => {
                                 Services
                             </NavLink>
                         </NavItem>
+
+                        {isAdmin && <NavItem>
+                                                    <NavLink tag={ReactLink} to="/admin" >
+                                                        Admin
+                                                    </NavLink>
+                                                </NavItem>}
 
 
 
