@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Admin from "./pages/Admin";
+import CreateCategory from "./pages/admin-routes/CreateCategory"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Userdashboard from "./pages/user-routes/Userdashboard";
@@ -36,6 +38,10 @@ function App() {
             <Route path="dashboard" element={<Userdashboard />} />
             <Route path="profile-info/:userId" element={<ProfileInfo />} />
             <Route path="update-blog/:blogId" element={<UpdateBlog />} />
+          </Route>
+          <Route path="/admin" >
+            <Route path="" element={<Admin />} />
+            <Route path="category" element={<CreateCategory />} />
           </Route>
         </Routes>
       </BrowserRouter>

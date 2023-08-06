@@ -5,3 +5,4 @@ export const loadAllCategories = () => {
     return respone.data;
   });
 };
+
